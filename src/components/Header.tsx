@@ -4,7 +4,7 @@ import Social from "./Social";
 
 const Header = () => {
   return (
-    <header className="flex pt-5 justify-between pb-4">
+    <header className="flex pt-5 justify-between pb-5">
       <div className="flex gap-4">
         <Social
           icon={<LinkedinLogo size={28} color="#fcfcfc" weight="bold" />}

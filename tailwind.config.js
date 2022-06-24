@@ -6,6 +6,12 @@ module.exports = {
       fontFamily: {
         sans: ["Poppins", "sans-serif"],
       },
+      backgroundImage: {
+        gradientShadow: `url('src/assets/gradient-shadow.svg')`,
+      },
+      boxShadow: {
+        gradientShadow: "inset 0px -150px 115px -100px #000000"
+      },
       colors: {
         gray: {
           100: "#E1E1E6",

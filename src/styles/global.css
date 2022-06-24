@@ -6,3 +6,13 @@ body {
   @apply text-gray-100;
   -webkit-font-smoothing: antialiased;
 }
+
+.slick-prev:before,
+.slick-next:before {
+  opacity: 1;
+  color: #121221;
+}
+
+.slick-track {
+  @apply flex gap-5;
+}
