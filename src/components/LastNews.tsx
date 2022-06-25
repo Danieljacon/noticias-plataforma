@@ -2,17 +2,17 @@ interface Props {
     title: string;
     date: string;
     author: string;
-    image: string;
+    image?: string;
     url?: string;
 }
 
 const LastNews = (props: Props) => {
   return (
-    <a className="flex flex-col" href={props.url}>
+    <a className="flex flex-col cursor-pointer" href={props.url}>
       <img
         src={props.image}
         alt={props.title}
-        className="rounded-lg"
+        className="rounded-lg h-[124px]"
       />
       <h1 className="my-4 font-bold text-lg text-gray-700">
       {props.title}

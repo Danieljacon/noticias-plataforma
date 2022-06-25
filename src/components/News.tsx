@@ -1,15 +1,52 @@
 import TopicMostRead from "./TopicMostRead";
 import Slider from "react-slick";
 import LastNews from "./LastNews";
+import { gql, useQuery } from "@apollo/client";
+
+const GET_NEWS = gql`
+  query MyQuery {
+    notices(orderBy: id_DESC) {
+      id
+      postedAt
+      title
+      slug
+      writer {
+        name
+      }
+      image {
+        url
+      }
+    }
+  }
+`;
+
+interface GetNewsQuery {
+  notices: {
+    id: string;
+    postedAt: string;
+    title: string;
+    slug: string;
+    writer: {
+      name: string;
+    };
+    image: {
+      url: string;
+    };
+  }[];
+}
 
 const News = () => {
-  var settings = {
+  let settings = {
     infinite: true,
     arrows: true,
     speed: 500,
     slidesToShow: 3,
     slidesToScroll: 1,
   };
+
+  const { data } = useQuery<GetNewsQuery>(GET_NEWS);
+
+  if (!data) return <div>Loading...</div>;
 
   return (
     <div className="flex flex-col gap-8">
@@ -19,12 +56,11 @@ const News = () => {
         </span>
 
         <TopicMostRead
-          title="Doutor Estranho no Multiverso da Loucura: Wanda é incrível"
-          author="Daniel Jacon"
-          image={
-            "bg-[url('https://uploads.jovemnerd.com.br/wp-content/uploads/2022/05/nc829_doctor_strange__23agk31-1210x544.jpg')]"
-          }
-          date="12 de Junho"
+          url={data?.notices[0].slug}
+          title={data?.notices[0].title}
+          author={data?.notices[0].writer.name}
+          image={`url('${data.notices[0].image.url}`}
+          date={data?.notices[0].postedAt}
         />
       </section>
 
@@ -34,48 +70,18 @@ const News = () => {
         </span>
         <div className="flex flex-col">
           <Slider {...settings}>
-            <LastNews
-              title="News Title Lorem Ipsum Dolor Sit Amet"
-              author="Maria Joaquina"
-              image="https://dimensaosete.com.br/static/c725e19b3ebbff8236035ee16e6e1fc4/8a681/luffy-transformacoes.webp"
-              date="13 de Junho"
-            />
-            <LastNews
-              title="News Title Lorem Ipsum Dolor Sit Amet"
-              author="Maria Joaquina"
-              image="https://dimensaosete.com.br/static/c725e19b3ebbff8236035ee16e6e1fc4/8a681/luffy-transformacoes.webp"
-              date="13 de Junho"
-            />
-            <LastNews
-              title="News Title Lorem Ipsum Dolor Sit Amet"
-              author="Maria Joaquina"
-              image="https://dimensaosete.com.br/static/c725e19b3ebbff8236035ee16e6e1fc4/8a681/luffy-transformacoes.webp"
-              date="13 de Junho"
-            />
-                        <LastNews
-              title="News Title Lorem Ipsum Dolor Sit Amet"
-              author="Maria Joaquina"
-              image="https://dimensaosete.com.br/static/c725e19b3ebbff8236035ee16e6e1fc4/8a681/luffy-transformacoes.webp"
-              date="13 de Junho"
-            />
-                        <LastNews
-              title="News Title Lorem Ipsum Dolor Sit Amet"
-              author="Maria Joaquina"
-              image="https://dimensaosete.com.br/static/c725e19b3ebbff8236035ee16e6e1fc4/8a681/luffy-transformacoes.webp"
-              date="13 de Junho"
-            />
-                        <LastNews
-              title="News Title Lorem Ipsum Dolor Sit Amet"
-              author="Maria Joaquina"
-              image="https://dimensaosete.com.br/static/c725e19b3ebbff8236035ee16e6e1fc4/8a681/luffy-transformacoes.webp"
-              date="13 de Junho"
-            />
-                        <LastNews
-              title="News Title Lorem Ipsum Dolor Sit Amet"
-              author="Maria Joaquina"
-              image="https://dimensaosete.com.br/static/c725e19b3ebbff8236035ee16e6e1fc4/8a681/luffy-transformacoes.webp"
-              date="13 de Junho"
-            />
+            {data.notices.map((notice) => {
+              return (
+                <LastNews
+                  key={notice.id}
+                  url={notice.slug}
+                  title={notice.title}
+                  author={notice.writer.name}
+                  image={notice.image.url}
+                  date={notice.postedAt}
+                />
+              );
+            })}
           </Slider>
         </div>
       </section>

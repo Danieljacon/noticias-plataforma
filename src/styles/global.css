@@ -14,5 +14,5 @@ body {
 }
 
 .slick-track {
-  @apply flex gap-5;
+  @apply flex gap-2
 }
