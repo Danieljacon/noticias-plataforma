@@ -2,9 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
+* {
+  scroll-behavior: smooth;
+}
+
 body {
   @apply text-gray-100;
   -webkit-font-smoothing: antialiased;
+  overflow-y: hidden;
 }
 
 .slick-prev:before,

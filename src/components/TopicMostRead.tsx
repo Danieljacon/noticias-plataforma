@@ -1,17 +1,9 @@
 import { Link } from "react-router-dom";
+import { TopicMostReadProps } from "./types";
 
-interface Props {
-  title: string;
-  date: string;
-  author: string;
-  image: string;
-  url?: string;
-}
-
-const TopicMostRead = (props: Props) => {
+const TopicMostRead = (props: TopicMostReadProps) => {
   return (
     <Link
-      // to={props.url}
       to={`/news/${props.url}`}
       style={{
         backgroundImage: props.image,

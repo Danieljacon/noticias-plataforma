@@ -1,16 +1,9 @@
 import { Link } from "react-router-dom";
+import { LastNewsProps } from "./types" 
 
-interface Props {
-    title: string;
-    date: string;
-    author: string;
-    image?: string;
-    url?: string;
-}
-
-const LastNews = (props: Props) => {
+const LastNews = (props: LastNewsProps) => {
   return (
-    <Link className="flex flex-col cursor-pointer" to={`/news/${props.url}`}>
+    <Link className="flex flex-col cursor-pointer focus-visible:outline-none" to={`/news/${props.url}`}>
       <img
         src={props.image}
         alt={props.title}

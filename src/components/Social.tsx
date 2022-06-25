@@ -1,10 +1,6 @@
-interface Props {
-    icon: React.ReactNode;
-    title: string;
-    url?: string;
-}
+import { SocialProps } from "./types";
 
-const Social = (props: Props) => {
+const Social = (props: SocialProps) => {
   return (
     <a href={props.url} className="flex items-center  text-gray-900 font-bold gap-1">
       <div className="w-11 h-11 bg-gray-900 rounded-[4px] flex justify-center items-center">

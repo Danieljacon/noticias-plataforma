@@ -1,6 +1,9 @@
 import { gql, useQuery } from "@apollo/client";
 import "@vime/core/themes/default.css";
 import { DefaultUi, Player, Youtube } from "@vime/react";
+import AnimatedNewContent from "./AnimatedNewContent";
+import RiseLoader from "react-spinners/RiseLoader";
+import {GetNewBySlugResponse, NewProps} from "./types" 
 
 const GET_NEW_BY_SLUG_QUERY = gql`
   query GetNewBySlug($slug: String) {
@@ -18,24 +21,6 @@ const GET_NEW_BY_SLUG_QUERY = gql`
   }
 `;
 
-interface GetNewBySlugResponse {
-  notice: {
-    id: string;
-    title: string;
-    videoId: string;
-    description: string;
-    writer: {
-      avatarUrl: string;
-      bio: string;
-      name: string;
-    };
-  };
-}
-
-interface NewProps {
-  newSlug: string;
-}
-
 const NewsContent = (props: NewProps) => {
   const { data } = useQuery<GetNewBySlugResponse>(GET_NEW_BY_SLUG_QUERY, {
     variables: {
@@ -44,11 +29,15 @@ const NewsContent = (props: NewProps) => {
   });
 
   if (!data?.notice) {
-    return <div>Loading...</div>;
+    return (
+      <div className="flex items-center justify-center h-screen">
+        <RiseLoader size={25} color={"white"} />
+      </div>
+    );
   }
 
   return (
-    <div>
+    <AnimatedNewContent>
       <Player>
         <Youtube videoId={data.notice.videoId} />
         <DefaultUi />
@@ -79,7 +68,7 @@ const NewsContent = (props: NewProps) => {
 
         <p className="text-base text-gray-200">{data.notice.description}</p>
       </div>
-    </div>
+    </AnimatedNewContent>
   );
 };
 

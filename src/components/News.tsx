@@ -4,6 +4,9 @@ import LastNews from "./LastNews";
 import { gql, useQuery } from "@apollo/client";
 import { format } from "date-fns";
 import ptBR from "date-fns/locale/pt-BR";
+import RiseLoader from "react-spinners/RiseLoader";
+
+import { GetNewsQuery } from "./types" 
 
 const GET_NEWS = gql`
   query MyQuery {
@@ -22,21 +25,6 @@ const GET_NEWS = gql`
   }
 `;
 
-interface GetNewsQuery {
-  notices: {
-    id: string;
-    postedAt: string;
-    title: string;
-    slug: string;
-    writer: {
-      name: string;
-    };
-    image: {
-      url: string;
-    };
-  }[];
-}
-
 const News = () => {
   let settings = {
     infinite: true,
@@ -48,7 +36,7 @@ const News = () => {
 
   const { data } = useQuery<GetNewsQuery>(GET_NEWS);
 
-  if (!data) return <div>Loading...</div>;
+  if (!data) return <div className="flex items-center justify-center h-screen"><RiseLoader size={25} /></div>;
 
   return (
     <div className="flex flex-col gap-8 max-w-[615px]">

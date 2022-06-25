@@ -10,11 +10,11 @@ const Home = () => {
   return (
     <main className="max-w-[1390px] m-auto">
       <div className="flex min-h-screen bg-gray-50">
-        <div className="flex-1 flex flex-col px-[3.75rem] pb-[3.75rem]">
+        <div className="flex-1 flex flex-col px-[3.75rem] pb-[3.75rem] overflow-y-scroll max-h-screen">
           <Header />
           <News />
         </div>
-        <main className="flex-1 max-w-[622px] bg-gray-900">
+        <main className="flex-1 max-w-[622px] bg-gray-900 overflow-y-scroll max-h-screen">
           {slug 
             ? <NewsContent newSlug={slug} /> 
             : <NewsContent newSlug="1-news-title-lorem-ipsum-dolor-sit-amet" />}
