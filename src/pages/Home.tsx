@@ -12,23 +12,21 @@ const Home = () => {
 
   useEffect(() => {
     setIsOpen(false);
-  }, [slug])
+  }, [slug]);
 
   return (
     <main className="max-w-[1390px] m-auto">
       <div className="flex min-h-screen bg-gray-50">
-        {isOpen 
-          ? (
-            <div className="bg-gray-50 z-40 absolute max-w-full flex-1 md:flex flex-col px-[3.75rem] pb-[3.75rem] overflow-y-scroll max-h-screen">
-              <Header />
-              <News />
-            </div>
-          ) 
-          : (
-            <div className="hidden max-w-full flex-1 md:flex flex-col px-[3.75rem] pb-[3.75rem] overflow-y-scroll max-h-screen">
-              <Header />
-              <News />
-            </div>
+        {isOpen ? (
+          <div className="bg-gray-50 z-40 absolute max-w-full flex-1 md:flex flex-col px-[3rem] pb-[6.75rem] overflow-y-scroll max-h-screen">
+            <Header />
+            <News />
+          </div>
+        ) : (
+          <div className="hidden max-w-full flex-1 md:flex flex-col px-[3.75rem] pb-[3.75rem] overflow-y-scroll max-h-screen">
+            <Header />
+            <News />
+          </div>
         )}
 
         <main className="z-0 flex-1 max-w-full md:max-w-[622px] bg-gray-900 overflow-y-scroll max-h-screen">
@@ -39,8 +37,11 @@ const Home = () => {
           )}
         </main>
       </div>
-      <div className="fixed z-50 bottom-0 md:hidden  w-full">
-        <button className="bg-gray-700 p-2 w-full mt-5" onClick={() => setIsOpen(!isOpen)}>
+      <div className="fixed z-50 bottom-0 md:hidden w-full">
+        <button
+          className="bg-gray-700 p-2 w-full"
+          onClick={() => setIsOpen(!isOpen)}
+        >
           {isOpen ? "Fechar notícias" : "Abrir notícias"}
         </button>
       </div>
