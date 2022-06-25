@@ -6,6 +6,7 @@ import "slick-carousel/slick/slick-theme.css";
 import { useParams } from "react-router-dom";
 
 const Home = () => {
+  const { slug } = useParams<{ slug: string }>();
   return (
     <main className="max-w-[1390px] m-auto">
       <div className="flex min-h-screen bg-gray-50">
@@ -14,7 +15,9 @@ const Home = () => {
           <News />
         </div>
         <main className="flex-1 max-w-[622px] bg-gray-900">
-          <NewsContent />
+          {slug 
+            ? <NewsContent newSlug={slug} /> 
+            : <div>Loading...</div>}
         </main>
       </div>
     </main>

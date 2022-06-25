@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 interface Props {
     title: string;
     date: string;
@@ -8,7 +10,7 @@ interface Props {
 
 const LastNews = (props: Props) => {
   return (
-    <a className="flex flex-col cursor-pointer" href={props.url}>
+    <Link className="flex flex-col cursor-pointer" to={`/news/${props.url}`}>
       <img
         src={props.image}
         alt={props.title}
@@ -21,7 +23,7 @@ const LastNews = (props: Props) => {
         <span>{props.date}</span>
         <span>{props.author}</span>
       </div>
-    </a>
+    </Link>
   );
 };
 

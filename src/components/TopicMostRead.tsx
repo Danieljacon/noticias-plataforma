@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 interface Props {
   title: string;
   date: string;
@@ -8,8 +10,9 @@ interface Props {
 
 const TopicMostRead = (props: Props) => {
   return (
-    <a
-      href={props.url}
+    <Link
+      // to={props.url}
+      to={`/news/${props.url}`}
       style={{
         backgroundImage: props.image,
       }}
@@ -22,7 +25,7 @@ const TopicMostRead = (props: Props) => {
           <span>{props.author}</span>
         </div>
       </div>
-    </a>
+    </Link>
   );
 };
 
