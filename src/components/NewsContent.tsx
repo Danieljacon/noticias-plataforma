@@ -1,7 +1,6 @@
 import { gql, useQuery } from "@apollo/client";
 import "@vime/core/themes/default.css";
 import { DefaultUi, Player, Youtube } from "@vime/react";
-import { useParams } from "react-router-dom";
 
 const GET_NEW_BY_SLUG_QUERY = gql`
   query GetNewBySlug($slug: String) {
@@ -38,16 +37,13 @@ interface NewProps {
 }
 
 const NewsContent = (props: NewProps) => {
-  const { slug } = useParams<{ slug: string }>();
-  console.log(slug);
   const { data } = useQuery<GetNewBySlugResponse>(GET_NEW_BY_SLUG_QUERY, {
     variables: {
-      slug: slug,
+      slug: props.newSlug,
     },
   });
-  console.log(data?.notice);
 
-  if(!data?.notice) {
+  if (!data?.notice) {
     return <div>Loading...</div>;
   }
 
@@ -68,10 +64,12 @@ const NewsContent = (props: NewProps) => {
             <img
               src={data.notice.writer.avatarUrl}
               alt=""
-              className="w-14 h-14 border-4 border-gray-900 rounded-full outline outline-1 outline-gray-400"
+              className=" object-cover w-14 h-14 border-4 border-gray-900 rounded-full outline outline-1 outline-gray-400"
             />
             <div className="flex flex-col justify-center min-w-fit">
-              <span className="text-2xl font-bold">{data.notice.writer.name}</span>
+              <span className="text-2xl font-bold">
+                {data.notice.writer.name}
+              </span>
               <span className="text-sm text-gray-200">
                 {data.notice.writer.bio}
               </span>
@@ -79,12 +77,7 @@ const NewsContent = (props: NewProps) => {
           </div>
         </div>
 
-        <p className="text-base text-gray-200">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus
-          commodo, felis vitae eleifend condimentum, dolor turpis aliquet
-          lectus, sed molestie purus mi accumsan nisl. Vestibulum vitae tellus
-          suscipit felis malesuada pulvinar. Sed imperdiet, est vel.
-        </p>
+        <p className="text-base text-gray-200">{data.notice.description}</p>
       </div>
     </div>
   );

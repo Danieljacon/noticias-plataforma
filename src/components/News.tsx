@@ -2,10 +2,12 @@ import TopicMostRead from "./TopicMostRead";
 import Slider from "react-slick";
 import LastNews from "./LastNews";
 import { gql, useQuery } from "@apollo/client";
+import { format } from "date-fns";
+import ptBR from "date-fns/locale/pt-BR";
 
 const GET_NEWS = gql`
   query MyQuery {
-    notices(orderBy: id_DESC) {
+    notices(orderBy: postedAt_DESC) {
       id
       postedAt
       title
@@ -49,7 +51,7 @@ const News = () => {
   if (!data) return <div>Loading...</div>;
 
   return (
-    <div className="flex flex-col gap-8">
+    <div className="flex flex-col gap-8 max-w-[615px]">
       <section className="flex flex-col gap-4">
         <span className="text-4xl font-bold text-gray-900">
           Tópico mais lido
@@ -60,11 +62,13 @@ const News = () => {
           title={data?.notices[0].title}
           author={data?.notices[0].writer.name}
           image={`url('${data.notices[0].image.url}`}
-          date={data?.notices[0].postedAt}
+          date={format(new Date(data.notices[0].postedAt), "dd 'de' MMMM", {
+            locale: ptBR,
+          })}
         />
       </section>
 
-      <section className="max-w-[615px] flex flex-col gap-4">
+      <section className="flex flex-col gap-4">
         <span className="text-2xl font-bold text-gray-900">
           Últimas notícias
         </span>
@@ -78,7 +82,9 @@ const News = () => {
                   title={notice.title}
                   author={notice.writer.name}
                   image={notice.image.url}
-                  date={notice.postedAt}
+                  date={format(new Date(notice.postedAt), "dd 'de' MMMM", {
+                    locale: ptBR,
+                  })}
                 />
               );
             })}
