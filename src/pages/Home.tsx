@@ -17,7 +17,7 @@ const Home = () => {
         <main className="flex-1 max-w-[622px] bg-gray-900 overflow-y-scroll max-h-screen">
           {slug 
             ? <NewsContent newSlug={slug} /> 
-            : <NewsContent newSlug="1-news-title-lorem-ipsum-dolor-sit-amet" />}
+            : <NewsContent newSlug="doutor-estranho-no-multiverso-da-loucura" />}
         </main>
       </div>
     </main>

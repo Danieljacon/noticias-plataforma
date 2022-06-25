@@ -14,7 +14,7 @@ const AnimatedNewContent = (props: AnimatedNewContentProps) => {
         initial="initial"
         animate="animate"
         exit="exit"
-        transition={{ duration: 0.5 }}
+        transition={{ duration: 1 }}
     >
       <div>{props.children}</div>
     </motion.div>

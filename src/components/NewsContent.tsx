@@ -3,7 +3,7 @@ import "@vime/core/themes/default.css";
 import { DefaultUi, Player, Youtube } from "@vime/react";
 import AnimatedNewContent from "./AnimatedNewContent";
 import RiseLoader from "react-spinners/RiseLoader";
-import {GetNewBySlugResponse, NewProps} from "./types" 
+import { GetNewBySlugResponse, NewProps } from "./types";
 
 const GET_NEW_BY_SLUG_QUERY = gql`
   query GetNewBySlug($slug: String) {
