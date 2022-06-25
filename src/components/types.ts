@@ -9,6 +9,14 @@ export interface GetNewBySlugResponse {
       avatarUrl: string;
       bio: string;
       name: string;
+      social: {
+        id: string;
+        socialUrl: string;
+        title: string;
+        socialIcon: {
+          url: string
+        }
+      }[];
     };
   };
 }
@@ -46,7 +54,7 @@ export interface AnimatedNewContentProps {
 }
 
 export interface SocialProps {
-  icon: React.ReactNode;
+  icon: string;
   title: string;
   url?: string;
 }
