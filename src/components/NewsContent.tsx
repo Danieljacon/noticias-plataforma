@@ -29,12 +29,12 @@ const NewsContent = (props: NewProps) => {
         </Player>
 
         <div className="p-11 flex flex-col gap-2">
-          <div className="flex gap-7">
-            <h1 className="max-w-[220px] text-2xl font-bold">
+          <div className="flex gap-7 flex-wrap">
+            <h1 className="max-w-full md:max-w-[220px] text-2xl font-bold">
               {data.notice.title}
             </h1>
 
-            <div className="flex flex-col gap-4 items-start">
+            <div className="flex flex-col gap-4 items-start mb-5 md:mb-0">
               <div className="flex gap-2">
                 <img
                   src={data.notice.writer.avatarUrl}

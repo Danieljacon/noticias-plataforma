@@ -51,6 +51,7 @@ export interface LastNewsProps {
 
 export interface AnimatedNewContentProps {
   children: React.ReactNode;
+  className?: string;
 }
 
 export interface SocialProps {

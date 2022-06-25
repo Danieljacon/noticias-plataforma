@@ -16,6 +16,18 @@ const News = () => {
     speed: 500,
     slidesToShow: 3,
     slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 2000,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          infinite: true,
+        },
+      },
+    ],
   };
 
   const { data } = useQuery<GetNewsQuery>(GET_NEWS);
@@ -31,7 +43,7 @@ const News = () => {
       <AnimatedNewContent>
         <div className="flex flex-col gap-8 max-w-[615px]">
           <section className="flex flex-col gap-4">
-            <span className="text-4xl font-bold text-gray-900">
+            <span className="text-2xl md:text-4xl font-bold text-gray-900">
               Tópico mais lido
             </span>
 

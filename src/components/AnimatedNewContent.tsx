@@ -16,7 +16,7 @@ const AnimatedNewContent = (props: AnimatedNewContentProps) => {
         exit="exit"
         transition={{ duration: 1 }}
     >
-      <div>{props.children}</div>
+      <div className={props.className}>{props.children}</div>
     </motion.div>
   );
 };
