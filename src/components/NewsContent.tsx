@@ -29,7 +29,7 @@ const NewsContent = (props: NewProps) => {
         </Player>
 
         <div className="p-11 flex flex-col gap-2">
-          <div className="flex gap-7 flex-wrap">
+          <div className="flex gap-7 flex-wrap md:flex-nowrap">
             <h1 className="max-w-full md:max-w-[220px] text-2xl font-bold">
               {data.notice.title}
             </h1>
